@@ -47,6 +47,7 @@ public class Console {
                         "13. stop - Konec hry."
         );
 
+
         while (true) {
             System.out.print(">> ");
             String command = scanner.nextLine().toLowerCase();

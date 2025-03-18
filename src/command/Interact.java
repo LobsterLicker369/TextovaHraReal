@@ -11,6 +11,7 @@ public class Interact {
         this.bag = bag;
     }
 
+
     public void InteractWithBoat(Bag bag) {
         int plankCount = bag.getItemCount("prkno");
 

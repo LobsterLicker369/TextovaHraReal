@@ -12,6 +12,7 @@ public class GoToCommand {
         this.destinationName = destinationName;
     }
 
+
     public String execute() {
         Location currentLocation = worldMap.getCurrentLocation();
         Location targetLocation = null;
