@@ -47,7 +47,6 @@ public class Loader {
         }
     }
 
-
     public String getSpeech(String character, int id) {
         if (characterSpeeches.containsKey(character)) {
             HashMap<Integer, String> speeches = characterSpeeches.get(character);

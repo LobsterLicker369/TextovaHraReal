@@ -17,7 +17,6 @@ public class UnlockRoom {
         this.worldMap = worldMap;
     }
 
-
     public void AddRoomToTxt() {
         try {
             // Nejprve nacist vsechny radky ze souboru

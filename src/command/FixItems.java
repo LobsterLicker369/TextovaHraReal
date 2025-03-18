@@ -25,7 +25,6 @@ public class FixItems {
         }
     }
 
-
     public void FixFlare(List<String> bag) {
         if (bag.contains("soucastky svetlice") && bag.contains("klic")) {
             bag.remove("soucastky svetlice");

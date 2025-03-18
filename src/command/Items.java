@@ -12,7 +12,6 @@ public class Items {
         loadItems();
     }
 
-
     private void loadItems() {
         try (BufferedReader reader = new BufferedReader(new FileReader(ITEMS_FILE))) {
             String line;

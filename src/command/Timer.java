@@ -12,7 +12,6 @@ public class Timer {
         floodTimer++;
     }
 
-
     public void printFloodStatus() {
         System.out.println("Flood timer: " + floodTimer + " / 100");
     }

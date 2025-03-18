@@ -42,7 +42,6 @@ class Bag {
         return count;
     }
 
-
     public boolean removeItem(String item) {
         List<String> items = loadItems();
         if (items.remove(item)) {

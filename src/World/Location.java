@@ -13,7 +13,6 @@ public class Location {
     }
 
 
-
     public String getName() {
         return name;
     }

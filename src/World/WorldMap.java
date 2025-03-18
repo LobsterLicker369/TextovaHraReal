@@ -8,7 +8,6 @@ public class WorldMap {
     private Location currentLocation;
     private Map<Integer, Location> locations;
 
-
     public WorldMap() {
         resetLocations(); // Reset pred startem hry
         locations = new HashMap<>();
