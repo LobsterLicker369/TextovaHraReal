@@ -1,5 +1,4 @@
 package World;
-
 import java.util.Arrays;
 
 public class Location {
@@ -12,6 +11,7 @@ public class Location {
         this.id = id;
         this.locations = locations;
     }
+
 
     public String getName() {
         return name;

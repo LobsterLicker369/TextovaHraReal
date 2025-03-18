@@ -3,35 +3,39 @@ package command;
 import World.Location;
 import World.WorldMap;
 
-public class GoToCommand implements Command {
-    private WorldMap worldMap;
-    private String destinationName;
+public class GoToCommand {
+    private final WorldMap worldMap;
+    private final String destinationName;
 
     public GoToCommand(WorldMap worldMap, String destinationName) {
         this.worldMap = worldMap;
-        this.destinationName = destinationName.toLowerCase(); // Prevedeme na mala pismena
+        this.destinationName = destinationName;
     }
 
-    @Override
     public String execute() {
-        // Prohledame mistnosti a najdeme odpovidajici jmeno
+        Location currentLocation = worldMap.getCurrentLocation();
+        Location targetLocation = null;
+
         for (Location location : worldMap.getLocations().values()) {
-            if (location.getName().toLowerCase().equals(destinationName)) {
-                // Zkontrolujeme, zda je propojeno v nekterem smeru
-                int direction = worldMap.getDirectionToLocation(location);
-                if (direction != -1 && worldMap.canMoveTo(direction)) {
-                    worldMap.moveTo(location);
-                    return "Presunuto na mistnost: " + location.getName();
-                } else {
-                    return "Nelze se presunout v tomto smeru.";
-                }
+            if (location.getName().equalsIgnoreCase(destinationName)) {
+                targetLocation = location;
+                break;
             }
         }
-        return "Mistnost " + destinationName + " nebyla nalezena.";
-    }
 
-    @Override
-    public boolean exit() {
-        return false;
+        if (targetLocation == null) {
+            return "Tato mistnost neexistuje.";
+        }
+
+        if (currentLocation.getId() == targetLocation.getId()) {
+            return "Uz se nachazis v teto mistnosti.";
+        }
+
+        if (worldMap.canMoveTo(targetLocation.getId())) {
+            worldMap.moveTo(targetLocation);
+            return "Presunuto na mistnost: " + targetLocation.getName();
+        } else {
+            return "Tato mistnost neni primo dostupna.";
+        }
     }
 }

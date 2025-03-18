@@ -1,0 +1,2 @@
+klíč,3
+součástky světlice,2

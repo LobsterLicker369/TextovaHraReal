@@ -1,0 +1,2 @@
+1=Prvni hlaska.
+2=Druha hlaska.

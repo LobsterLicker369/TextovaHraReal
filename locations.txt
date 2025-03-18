@@ -1,4 +1,4 @@
-paluba,1,1,2,3,0
+paluba,1,1,2,3,6
 kajuta,2,1,0,3,4
 kuchyn,3,1,2,0,4
 strojovna,4,0,2,3,0
