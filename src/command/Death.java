@@ -6,4 +6,5 @@ public class Death {
         System.out.println("Voda te zaplavila. Zemrel jsi.");
         System.exit(0);
     }
+
 }

@@ -14,6 +14,7 @@ public class Speak {
         loadDialogue("radio", "radiospeak.txt");
     }
 
+
     private void loadDialogue(String character, String filename) {
         List<String> lines = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {

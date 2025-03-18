@@ -13,6 +13,7 @@ public class Investigate{
         this.items = items;
     }
 
+
     public void execute() {
         int currentRoomId = worldMap.getCurrentRoomId();
         List<String> roomItems = items.getItemsInRoom(currentRoomId);

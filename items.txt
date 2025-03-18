@@ -1,2 +1,3 @@
-klíč,3
-součástky světlice,2
+prkno,1
+soucastky svetlice,2
+klic,3
