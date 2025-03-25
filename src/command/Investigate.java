@@ -13,18 +13,18 @@ public class Investigate{
         this.items = items;
     }
 
-
     public void execute() {
         int currentRoomId = worldMap.getCurrentRoomId();
         List<String> roomItems = items.getItemsInRoom(currentRoomId);
 
         if (roomItems.isEmpty()) {
-            System.out.println("V této místnosti nejsou žádné předměty.");
+            System.out.println("V teto mistnosti nejsou zadne predmety.");
         } else {
-            System.out.println("V místnosti vidíš následující předměty:");
+            System.out.println("V mistnosti vidis nasledujici predmety:");
             for (String item : roomItems) {
                 System.out.println("- " + item);
             }
         }
     }
+
 }

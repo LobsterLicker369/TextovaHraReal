@@ -1,3 +1,2 @@
-prkno,1
-soucastky svetlice,2
+prkno,1,2,3,4
 klic,3

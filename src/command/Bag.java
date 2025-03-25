@@ -11,8 +11,6 @@ class Bag {
         return items.contains(item);
     }
 
-
-
     public void openBag() {
         List<String> items = loadItems();
         if (items.isEmpty()) {
@@ -47,7 +45,6 @@ class Bag {
             saveItems(items);
             return true;
         } else {
-
             System.out.println("Polozka nebyla nalezena v inventari.");
             return false;
         }
@@ -65,6 +62,13 @@ class Bag {
         }
         return items;
     }
+    public void resetInventory() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
+            writer.write(""); // Vymaze obsah inventare
+        } catch (IOException e) {
+            System.out.println("Chyba pri resetovani inventare: " + e.getMessage());
+        }
+    }
 
     private void saveItems(List<String> items) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
@@ -76,4 +80,10 @@ class Bag {
             System.out.println("Chyba pri ukladani inventare.");
         }
     }
+
+    public boolean canAssembleFlare() {
+        int count = getItemCount("soucastky svetlice");
+        return count >= 2; // Pokud ma hrac 2 soucastky, muze svetlici sestavit
+    }
+
 }
