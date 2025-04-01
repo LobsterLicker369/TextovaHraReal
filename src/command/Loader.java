@@ -5,10 +5,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * Trida pro nacitani postav a jejich replik z externich souboru.
+ */
 public class Loader {
 
     private final HashMap<String, HashMap<Integer, String>> characterSpeeches = new HashMap<>();
 
+    /**
+     * Nacte seznam postav a jejich prislusne soubory s replikami
+     * ze souboru "characters.txt".
+     */
     public void LoadCharacters() {
         try (BufferedReader reader = new BufferedReader(new FileReader("characters.txt"))) {
             String line;
@@ -27,6 +34,12 @@ public class Loader {
         }
     }
 
+    /**
+     * Nacte repliky pro jednu postavu ze souboru.
+     *
+     * @param character nazev postavy
+     * @param file nazev souboru s replikami postavy
+     */
     private void loadSpeechesForCharacter(String character, String file) {
         HashMap<Integer, String> speeches = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -41,17 +54,23 @@ public class Loader {
                 }
             }
             characterSpeeches.put(character, speeches);
-            System.out.println("Repliky pro " + character + " nacteny ze souboru: " + file);
+                System.out.println("Hlasky pro " + character + " nacteny ze souboru: " + file);
         } catch (IOException e) {
             System.out.println("Chyba pri nacitani " + file + ": " + e.getMessage());
         }
     }
 
-
+    /**
+     * ziskat hlasky postavy pro danou ID hodnotu.
+     *
+     * @param character nazev postavy
+     * @param id ID hlasky
+     * @return hlasku postavy nebo zpravu, pokud replika neexistuje
+     */
     public String getSpeech(String character, int id) {
         if (characterSpeeches.containsKey(character)) {
             HashMap<Integer, String> speeches = characterSpeeches.get(character);
-            return speeches.getOrDefault(id, "Replika nenalezena.");
+            return speeches.getOrDefault(id, "hlaska nenalezena.");
         } else {
             return "Postava nenalezena.";
         }

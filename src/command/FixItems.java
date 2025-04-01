@@ -4,14 +4,27 @@ import java.util.List;
 import java.util.Collections;
 import World.WorldMap;
 
+/**
+ * Trida pro opravu predmetu, jako je clun, svetlice a klice, ve hre.
+ */
 public class FixItems {
 
     private final WorldMap worldMap;
 
+    /**
+     * Konstruktor pro vytvoreni tridy FixItems.
+     *
+     * @param worldMap mapa sveta
+     */
     public FixItems(WorldMap worldMap) {
         this.worldMap = worldMap;
     }
 
+    /**
+     * Opravi clun, pokud uzivatel ma dostatek prken.
+     *
+     * @param bag seznam predmetu v batohu
+     */
     public void FixBoat(List<String> bag) {
         int count = Collections.frequency(bag, "prkno");
         if (count >= 5) {
@@ -25,7 +38,11 @@ public class FixItems {
         }
     }
 
-
+    /**
+     * Opravi svetlici, pokud uzivatel ma soucastky a klic.
+     *
+     * @param bag seznam predmetu v batohu
+     */
     public void FixFlare(List<String> bag) {
         if (bag.contains("soucastky svetlice") && bag.contains("klic")) {
             bag.remove("soucastky svetlice");
@@ -37,6 +54,11 @@ public class FixItems {
         }
     }
 
+    /**
+     * Opravi klice, pokud uzivatel ma dostatek soucastek klice.
+     *
+     * @param bag seznam predmetu v batohu
+     */
     public void FixKeys(List<String> bag) {
         int count = Collections.frequency(bag, "soucastky klice");
         if (count >= 2) {

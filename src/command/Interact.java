@@ -2,15 +2,31 @@ package command;
 
 import World.WorldMap;
 
+/**
+ * Trida pro interakci s predmety a objekty ve hre.
+ */
 public class Interact {
     private final WorldMap worldMap;
     private final Bag bag;
 
+    /**
+     * Konstruktor tridy Interact.
+     *
+     * @param worldMap svet, kde se hra odehrava
+     * @param bag taska, ve ktere jsou predmety, se kterymi lze interagovat
+     */
     public Interact(WorldMap worldMap, Bag bag) {
         this.worldMap = worldMap;
         this.bag = bag;
     }
 
+    /**
+     * Interakce s clunem. Pro opravu clunu jsou potreba 4 prkna
+     * a opravena svetlice. Po oprave clunu a pouziti svetlice
+     * je hrac presunut na zachrannou cestu a hra konci.
+     *
+     * @param bag taska hrace obsahujici predmety
+     */
     public void InteractWithBoat(Bag bag) {
         int plankCount = bag.getItemCount("prkno");
 
@@ -30,6 +46,12 @@ public class Interact {
         }
     }
 
+    /**
+     * Interakce s obecnym predmetem. Zatim pouze vypise informaci,
+     * ze s predmetem nelze interagovat.
+     *
+     * @param itemName nazev predmetu
+     */
     public void InteractWithItem(String itemName) {
         System.out.println("Zatim nelze interagovat s: " + itemName);
     }

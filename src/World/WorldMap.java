@@ -4,11 +4,18 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Trida reprezentujici mapu sveta.
+ * Umoznuje nahravat, ukládat, a manipulovat s lokaci.
+ */
 public class WorldMap {
     private Location currentLocation;
     private Map<Integer, Location> locations;
 
-
+    /**
+     * Konstruktor tridy WorldMap.
+     * Inicializuje mapu, resetuje a nahrava lokace, nastavuje pocatecni lokaci.
+     */
     public WorldMap() {
         resetLocations(); // Reset pred startem hry
         locations = new HashMap<>();
@@ -16,6 +23,10 @@ public class WorldMap {
         currentLocation = locations.get(1);
     }
 
+    /**
+     * Resetuje soubor "locations.txt" s preddefinovanymi hodnotami.
+     * Zajistuje, ze pri spusteni hry budou k dispozici vychozi lokace.
+     */
     private void resetLocations() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("locations.txt"))) {
             writer.write("paluba,1,1,2,3,6\n");
@@ -28,6 +39,10 @@ public class WorldMap {
         }
     }
 
+    /**
+     * Nahrava lokace ze souboru "locations.txt".
+     * Vytvari objekty Location a uklada je do mapy podle jejich ID.
+     */
     public void loadLocations() {
         try (BufferedReader reader = new BufferedReader(new FileReader("locations.txt"))) {
             String line;
@@ -49,17 +64,26 @@ public class WorldMap {
         }
     }
 
+    /**
+     * Znovu nacte lokace z "locations.txt" po vymazani stavajicich hodnot.
+     */
     public void reloadLocations() {
         locations.clear();
         loadLocations();
     }
 
+    /**
+     * Vytiskne seznam vsech lokaci na konzoli.
+     */
     public void printLocations() {
         for (Location location : locations.values()) {
             System.out.println(location);
         }
     }
 
+    /**
+     * Ulozi vsechny lokace do souboru "locations.txt".
+     */
     public void saveLocations() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("locations.txt"))) {
             for (Location location : locations.values()) {
@@ -78,16 +102,28 @@ public class WorldMap {
         }
     }
 
+    /**
+     * Napise do konzole jmeno aktualni mistnosti.
+     */
     public void printCurrentLocation() {
         System.out.println("Aktualni mistnost: " + currentLocation.getName());
     }
 
-    // Presun mezi mistnostmi (dle ID)
+    /**
+     * Presun do nove mistnosti.
+     *
+     * @param newLocation nova mistnost, do ktere se presuneme
+     */
     public void moveTo(Location newLocation) {
         this.currentLocation = newLocation;
     }
 
-    // Kontrola, zda je propojeni ve smeru na jinou mistnost
+    /**
+     * Zjisti, zda je mozne se presunout do mistnosti s danym ID.
+     *
+     * @param destinationId ID cilove mistnosti
+     * @return true, pokud je mozny presun, jinak false
+     */
     public boolean canMoveTo(int destinationId) {
         int[] connections = currentLocation.getLocations();
         for (int i = 0; i < connections.length; i++) {
@@ -98,7 +134,12 @@ public class WorldMap {
         return false;
     }
 
-    // Ziskani cisla smeru pro danou mistnost
+    /**
+     * Ziska smer (index) pro presun do zadane mistnosti.
+     *
+     * @param destination cilova mistnost
+     * @return index smeru (0 = Sever, 1 = Vychod, 2 = Jih, 3 = Zapad), nebo -1, pokud nelze
+     */
     public int getDirectionToLocation(Location destination) {
         int[] connections = currentLocation.getLocations();
         for (int i = 0; i < connections.length; i++) {
@@ -109,14 +150,29 @@ public class WorldMap {
         return -1;
     }
 
+    /**
+     * Vraci mapu vsech lokaci v hre.
+     *
+     * @return mapa ID -> Location
+     */
     public Map<Integer, Location> getLocations() {
         return locations;
     }
 
+    /**
+     * Vraci aktualni mistnost.
+     *
+     * @return aktualni mistnost
+     */
     public Location getCurrentLocation() {
         return currentLocation;
     }
 
+    /**
+     * Vraci ID aktualni mistnosti.
+     *
+     * @return ID aktualni mistnosti
+     */
     public int getCurrentRoomId() {
         return currentLocation.getId();
     }

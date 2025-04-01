@@ -3,6 +3,10 @@ package command;
 import World.WorldMap;
 import java.util.*;
 
+/**
+ * Trida pro spravovani hlavni konzole hry.
+ * Obsahuje logiku pro zpracovani prikazu od hrace a interakci s hernim svetem.
+ */
 public class Console {
     private final Scanner scanner;
     private final Map<String, Command> commandMap;
@@ -16,6 +20,9 @@ public class Console {
     private final Loader loader;
     private final Map<String, Integer> speakIndexes;
 
+    /**
+     * Konstruktor, ktery inicializuje vsechny potrebne objekty a nastavi prikazy.
+     */
     public Console() {
         scanner = new Scanner(System.in);
         worldMap = new WorldMap();
@@ -23,7 +30,6 @@ public class Console {
         items = new Items();
 
         items.resetItems();
-
         bag.resetInventory();
 
         interact = new Interact(worldMap, bag);
@@ -38,6 +44,9 @@ public class Console {
         initializeCommands();
     }
 
+    /**
+     * Inicializuje seznam prikazu pro hru.
+     */
     private void initializeCommands() {
         // Staticke prikazy
         commandMap.put("seznam", worldMap::printLocations);
@@ -54,6 +63,9 @@ public class Console {
         commandMap.put("opravit svetlici", this::repairFlare);
     }
 
+    /**
+     * Spusti hru a ceka na vstup od uzivatele pro prikazy.
+     */
     public void start() {
         System.out.println(
                 "Dostupne prikazy:\n" +
@@ -111,10 +123,18 @@ public class Console {
         scanner.close();
     }
 
+    /**
+     * Spusti prikaz pro presun na jinou mistnost.
+     * @param destination Cielova mistnost.
+     */
     private void executeGoToCommand(String destination) {
         System.out.println(new GoToCommand(worldMap, destination).execute());
     }
 
+    /**
+     * Spusti prikaz pro komunikaci s postavou.
+     * @param character Jmeno postavy.
+     */
     private void executeSpeakCommand(String character) {
         if (character.equals("radio") && !unlockRoom.isRadioUnlocked()) {
             System.out.println("Radio nefunguje. Musis nejdriv odemknout radiovou mistnost!");
@@ -128,6 +148,10 @@ public class Console {
         speakIndexes.put(character, currentId + 1);
     }
 
+    /**
+     * Spusti prikaz pro sebrani predmetu.
+     * @param item Nazev predmetu.
+     */
     private void executePickUpCommand(String item) {
         int roomId = worldMap.getCurrentRoomId();
         List<String> roomItems = items.getItemsInRoom(roomId);
@@ -143,6 +167,10 @@ public class Console {
         }
     }
 
+    /**
+     * Spusti prikaz pro polozit predmet.
+     * @param item Nazev predmetu.
+     */
     private void executeDropCommand(String item) {
         if (bag.removeItem(item)) {
             int roomId = worldMap.getCurrentRoomId();
@@ -153,14 +181,24 @@ public class Console {
         }
     }
 
+    /**
+     * Spusti interakci s predmetem.
+     * @param item Nazev predmetu.
+     */
     private void executeInteractCommand(String item) {
         interact.InteractWithItem(item);
     }
 
+    /**
+     * Spusti opravu clunu.
+     */
     private void useBoat() {
         interact.InteractWithBoat(bag);
     }
 
+    /**
+     * Spusti opravu svetlice.
+     */
     private void repairFlare() {
         int currentRoomId = worldMap.getCurrentRoomId();
 
