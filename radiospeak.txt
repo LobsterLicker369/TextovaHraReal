@@ -1,2 +1,3 @@
-1=Prvni hlaska.
-2=Druha hlaska.
+1=Je tam nekdo?
+2=Dobre dobre, slysim vas, musite sehnat dost prken aby jste mohl utect lodi, a take musite opravit svetlici!
+3=Hodne stesti.

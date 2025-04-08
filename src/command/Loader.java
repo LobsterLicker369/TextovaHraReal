@@ -38,7 +38,7 @@ public class Loader {
      * Nacte repliky pro jednu postavu ze souboru.
      *
      * @param character nazev postavy
-     * @param file nazev souboru s replikami postavy
+     * @param file nazev souboru s hlaskami postavy
      */
     private void loadSpeechesForCharacter(String character, String file) {
         HashMap<Integer, String> speeches = new HashMap<>();
@@ -65,7 +65,7 @@ public class Loader {
      *
      * @param character nazev postavy
      * @param id ID hlasky
-     * @return hlasku postavy nebo zpravu, pokud replika neexistuje
+     * @return hlasku postavy nebo zpravu, pokud hlaska neexistuje
      */
     public String getSpeech(String character, int id) {
         if (characterSpeeches.containsKey(character)) {

@@ -19,7 +19,7 @@ public class Speak {
     public Speak() {
         dialogues = new HashMap<>();
         dialogueIndex = new HashMap<>();
-        loadDialogue("narrator", "narratorspeak.txt");
+        loadDialogue("Schizofrenie", "narratorspeak.txt");
         loadDialogue("radio", "radiospeak.txt");
     }
 

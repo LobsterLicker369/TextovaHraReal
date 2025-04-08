@@ -1,2 +1,2 @@
-narrator,narratorspeak.txt
+schizofrenie,narratorspeak.txt
 radio,radiospeak.txt

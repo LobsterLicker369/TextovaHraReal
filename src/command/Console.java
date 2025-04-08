@@ -58,8 +58,8 @@ public class Console {
         });
 
         // Interakce
-        commandMap.put("interaguj s dvermi", () -> unlockRoom.InteractWithDoor(bag));
-        commandMap.put("interaguj s clunem", this::useBoat);
+        commandMap.put("otevri dvere", () -> unlockRoom.InteractWithDoor(bag));
+        commandMap.put("pouzij clun", this::useBoat);
         commandMap.put("opravit svetlici", this::repairFlare);
     }
 
@@ -73,11 +73,11 @@ public class Console {
                         "- otevri inventar       -> Zobrazi obsah inventare.\n" +
                         "- prohledat             -> Prohleda mistnost a vypise predmety v ni.\n" +
                         "- seber [predmet]       -> Sebere predmet z mistnosti.\n" +
-                        "- poloz [predmet]       -> Poloz predmet z inventare zpet do mistnosti.\n" +
-                        "- interaguj s dvermi    -> Pokusi se otevrit dvere do radiove mistnosti.\n" +
-                        "- interaguj s clunem    -> Pokusi se opravit a pouzit zachranny clun (potrebuje 5 prken a opravenou svetlici).\n" +
+                        "- poloz [predmet]       -> Polozi predmet z inventare zpet do mistnosti.\n" +
+                        "- otevri dvere          -> Pokusi se otevrit dvere do radiove mistnosti.\n" +
+                        "- pouzij clun           -> Pokusi se opravit a pouzit zachranny clun (potrebuje 5 prken a opravenou svetlici).\n" +
                         "- jdi na [mistnost]     -> Prezune te do jine mistnosti (napr. jdi na paluba).\n" +
-                        "- mluv [postava]        -> Postava rekne dalsi repliku.\n" +
+                        "- mluv [postava]        -> Schizofrenie (nebo radio po otevreni dveri do mistnosti) promluvi.\n" +
                         "- opravit svetlici      -> Opravi svetlici (pouze ve strojovne, potrebujes 3 soucastky).\n" +
                         "- stop                  -> Konec hry."
         );
@@ -113,7 +113,7 @@ public class Console {
             }
 
             timer.increaseFlood();
-            System.out.println("Floodtimer: " + timer.getFloodTimer());
+            System.out.println("Sekundy vyuzity: " + timer.getFloodTimer());
 
             if (timer.getFloodTimer() >= 100) {
                 System.out.println("Byl jsi zaplaven a zemrel jsi! Konec hry.");

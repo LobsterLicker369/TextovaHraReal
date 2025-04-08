@@ -1,3 +1,0 @@
-soucastky svetlice,2,4
-prkno,1,2,3,4
-klic,3
